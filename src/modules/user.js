@@ -26,11 +26,13 @@ export default function user(state = initialstate, action){
         loginLoading: false,
         loginDone: true,
         userInfo: action.data,
+        tocken: "#!!user!!#"
       }
     case LOGIN_FAILURE: 
       return {
         loginLoading: false,
         LoginError: true,
+        loginDone: false,
         errMsg: action.error
       }
     case LOGOUT_SUCCESS: 
