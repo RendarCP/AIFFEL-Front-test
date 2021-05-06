@@ -60,7 +60,7 @@ function Login({ history }) {
 
   return(
     <LoginContainer>
-      <img src={logo} />
+      <img alt="로고" src={logo} />
       
       <Spacer top={30} />
       <Input 

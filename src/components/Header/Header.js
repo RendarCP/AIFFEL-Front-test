@@ -7,10 +7,10 @@ import Spacer from '../Spacer/Spacer'
 function Header({ user }) {
   return(
     <HeaderContainer>
-      <img src={logo} style={{ height: 30, marginLeft: 100}} />
+      <img alt="로고" src={logo} style={{ height: 30, marginLeft: 100}} />
       
       <Profile>
-        <img src={userImage} style={{ height: 30 }}/>
+        <img alt="프로필 이미지" src={userImage} style={{ height: 30 }}/>
         <Spacer right={30} />
         <div>{user.username ? user.username : 'test'}</div>
       </Profile>
