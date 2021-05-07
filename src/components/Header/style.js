@@ -6,6 +6,8 @@ export const HeaderContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   height: 70px;
+  border-bottom: 2px solid;
+  margin-bottom: 20px;
 `
 export const Profile = styled.div`
   display: flex;

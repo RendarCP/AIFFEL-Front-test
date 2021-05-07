@@ -9,52 +9,101 @@ import List from '../../components/List/List'
 
 import axios from 'axios'
 
-function ForumList(){
-  const [lists, setList] = useState([])
+function ForumList({ history }){
+  const [ lists, setList ] = useState([])
+  const [ search, setSearch ] = useState("")
+  const [ count, setCount ] = useState(1)
+  
+  // 데이터 처리
   useEffect(() => {
-    console.log('화면에 나타났어요!')
-    axios.get("http://localhost:5000/forum?_page=1&_limit=5")
+    axios.get(`http://localhost:5000/forum?_page=${count}&_limit=5`)
+    //axios.get("http://localhost:5000/forum")
     .then(res => {
       setList(res.data)
     })
     .catch(err => {
       console.log(err)
     })
-    
+    return () => {
+      console.log('test')
+    }
   }, [])
+
+  // 검색 입력값 처리 
+  const onChange = (e) => {
+    setSearch(e.target.value)
+  }
+
+  const onClick = () => {
+    if(search !== ""){
+      setList(lists.filter( list => list.title.includes(search)))
+    }
+    else{
+      alert("검색어를 입력해주세요!")
+    }
+  }
+
+  const onClickPage = (n) => {
+    setCount(n)
+    axios.get(`http://localhost:5000/forum?_page=${count}&_limit=5`)
+    .then(res => {
+      setList(res.data)
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  }
+
+  const onClickWrite = () => {
+    console.log('clicked')
+    history.push('/editforum')
+  }
+
   return(
-    console.log('list', lists),
     <div>
       {/* 검색창 부분 */}
       <div style={{ display: 'flex', alignItems: 'center', padding: '0 40px 0 40px'}}>
         <div style={{ width: '100%'}}>
-          <Input />
+          <Input 
+            name="search" 
+            value={search} 
+            onChange={onChange}
+            placeholder="검색어를 입력하세요"
+          />
         </div>
         <Spacer right={60} />
         <div style={{ marginRight: 40 }}>
-          <Button title="검색"/>
+          <Button title="검색" click={onClick}/>
         </div>
       </div>
       
-      {/* 리스트 부분 */}
-      <div style={{ display: 'flex', flexDirection: 'row', padding: 40, justifyContent: 'center', alignItems: 'center' }}>
-      {
-        lists.map( (list,id) => {
-          return(
-            <>
-              <div key={id} style={{ flexDirection: 'column', width: '100%'}}>
-                <List title={list.title} content={list.content} />
-                <Tag name={list.tag.name} color={list.tag.color} />
-              </div>
-              <Spacer right={20} />
-            </>
-          )
-        })
-      }
+      <div style={{ position: 'absolute', right: 0, paddingRight: 100, marginTop: 20}}>
+        <Button title="글작성" click={onClickWrite}/>
       </div>
-
+      {/* 리스트 부분 */}
+      <div style={{ 
+        display: 'flex', 
+        flexDirection: 'row', 
+        padding: 40, 
+        justifyContent: 'center', 
+        alignItems: 'center',
+        marginTop: 50, 
+      }}>
+        <List lists={lists} />
+      </div>
+      <Pagination page={onClickPage} />
     </div>
   )
 }
 
 export default ForumList
+
+function Pagination(props) {
+  return(
+    <div style={{ display: 'flex', justifyContent:'center', alignItems: 'center'}}>
+      <ui style={{ border: '1px solid black', padding: 5}} onClick={()=>props.page(1)}>1</ui>
+      <ui style={{ border: '1px solid black', padding: 5}} onClick={()=>props.page(2)}>2</ui>
+      <ui style={{ border: '1px solid black', padding: 5}} onClick={()=>props.page(3)}>3</ui>
+    </div>
+  )
+}

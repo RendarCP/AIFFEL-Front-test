@@ -11,7 +11,6 @@ import ForumDetail from './pages/ForumDetail/ForumDetail.js';
 
 function App() {
   const user = useSelector(state => state.user)
-  console.log('app',user)
   return (
     <div style={{ width: '100%' }}>
       <Router>
