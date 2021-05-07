@@ -1,70 +1,40 @@
-# Getting Started with Create React App
+# AIFFEL(모두의 연구소) Front-test (조성욱) 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 요구 사항
 
-## Available Scripts
+###Header 
+- [x]  로그인 된 이후에만 헤더영역을 볼 수 있습니다.
+- [x]  헤더 좌측에는 플랫폼 로고, 헤더 우측에는 사용자정보(사용자 이미지와 이름)이 들어갑니다.
+- [x]  사용자 정보 영역에 마우스 오버되는 경우 영역이 반응합니다.
+- [x]  메뉴(사용자정보)는 클릭 시, 해당 페이지로 이동 합니다.
 
-In the project directory, you can run:
+### Login
+- [x]  서비스의 첫 화면입니다.
+- [x]  로그인 화면 중간에 인풋영역이 있습니다.
+- [x]  인풋 영역 하단에 로그인 버튼을 넣는다.
+- [x]  로그인 성공 시, 서비스 페이지로 이동됩니다.
+- [x]  로그인 실패 시, 아이디와 비밀번호를 확인해 달라는 Alert이 발생 합니다.
 
-### `npm start`
+### 포럼 목록
+- [x]  로그인 성공시 접속가능한 페이지입니다.
+- [x]  페이지 상단에 검색 영역이 있습니다.
+- [x]  검색 영역 하단에는 질문 목록(포스트 리스트)영역이 있습니다.
+- [x]  리스트 각 항목(포스트)에 질문의 타이틀을 보여주는 영역이 있습니다.
+- [x]  리스트 각 항목에 본문을 보여주는 영역이 있습니다. 글이 너무 길다면 적절한 길이에서 축약이 필요해 보입니다.
+- [x]  리스트 각 항목에 질문에 등록된 태그를 보여주는 영역이 있습니다.
+- [ ]  리스트 각 항목에 질문이 등록된 시간을 보여주는 영역이 있습니다. 
+  - --> ? 더미데이터에 없어서 질문(직접넣는건지 애매)
+- [x]  리스트 각 항목을 클릭시 상세화면 페이지로 이동합니다.
+            
+### 포럼 작성
+- [x]  질문(포스트)의 제목을 입력받는 타이틀 영역이 있습니다.  `input` 사용 권장.
+- [x]  질문의 본문을 입력받는 본문 영역이 있습니다. `textarea` 사용 권장.
+- [x]  질문의 태그를 고르는 드롭다운이 있습니다.
+- [x]  질문을 등록하는 버튼은 `validation` 이 필요합니다.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### 포럼 상세
+- [x]  페이지 최상단에는 질문의 제목을 보여주는 타이틀 영역이 있습니다.
+- [x]  타이틀 영역 하단에 질문의 태그를 보여주는 영역이 있습니다.
+- [x]  타이틀 영역 밑에는 본문을 보여주는 컨텐츠 영역이 있습니다.
+- [x]  컨텐츠 영역 하단에는 사용자가 게시글에 액션을 취할수 있는 영역이 있습니다.
+            
