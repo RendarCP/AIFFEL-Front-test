@@ -135,38 +135,3 @@ function ForumDetail({ history }) {
 }
 
 export default ForumDetail
-
-// function PopUp() {
-//   return(
-//     <div style={{ 
-//       position: 'fixed', 
-//       width: '50%', 
-//       height: '50%',
-//       display: 'flex',
-//       flexDirection: 'column',
-//       justifyContent: 'center',
-//       alignItems: 'center',
-//       top: 0,
-//       left: 0,
-//       right: 0,
-//       bottom: 0,
-//       margin: 'auto',
-//       border: '2px solid gray',
-//       borderRadius: 10,
-//       backgroundColor: 'white'
-//     }}>
-//       <div>제목이 들어갈 영역</div>
-//       <div style={{ 
-//         display: 'flex', 
-//         flexDirection: 'row', 
-//         width: '100%',
-//         marginLeft: 30,
-//         marginRight: 30,
-//       }}>
-//         <Button color='green' title="확인" />
-//         <Spacer left={20} right={20} />
-//         <Button color='red' title="취소" />
-//       </div>
-//     </div>
-//   )
-// }
