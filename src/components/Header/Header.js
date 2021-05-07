@@ -1,7 +1,12 @@
 import React from 'react'
+import { HeaderContainer, Profile } from './style'
+import { Link } from 'react-router-dom'
+
+// asset
 import logo from '../../Images/aiffel_logo.png'
 import userImage from '../../Images/profile.png'
-import { HeaderContainer, Profile } from './style'
+
+// compoent
 import Spacer from '../Spacer/Spacer'
 
 function Header({ user }) {
@@ -12,7 +17,9 @@ function Header({ user }) {
       <Profile>
         <img alt="프로필 이미지" src={userImage} style={{ height: 30 }}/>
         <Spacer right={30} />
-        <div>{user.username ? user.username : 'test'}</div>
+        <Link style={{ textDecoration: 'none', color: 'black'}} to='/profile'>
+          <div>{user.username ? user.username : 'test'}</div>
+        </Link>
       </Profile>
     </HeaderContainer>
   )

@@ -6,7 +6,7 @@ function Button(props) {
     onClick={props.click}
     style={{ 
       width: '100%',
-      backgroundColor: '#f6be44',
+      backgroundColor: props.color ? props.color : '#f6be44' ,
       borderRadius: 10,
       padding: 20,
       display: 'flex',

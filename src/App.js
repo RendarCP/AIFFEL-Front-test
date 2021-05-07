@@ -7,6 +7,7 @@ import Header from './components/Header/Header.js';
 import ForumList from './pages/ForumList/ForumList.js';
 import EditForum from './pages/EditForum/EditForum.js';
 import ForumDetail from './pages/ForumDetail/ForumDetail.js';
+import Profile from './pages/Profile/Profile'
 
 
 function App() {
@@ -21,7 +22,8 @@ function App() {
           <Route exact path="/" component={Login} />
           <Route path="/forum" component={ForumList} />
           <Route path="/editforum" component={EditForum} />
-          <Route path="/forum/:id" component={ForumDetail} />
+          <Route path="/detail/:id" component={ForumDetail} />
+          <Route path="/profile" component={Profile} />
         </Switch>  
       </Router>
     </div>

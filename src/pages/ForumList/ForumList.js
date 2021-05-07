@@ -8,15 +8,18 @@ import Tag from '../../components/Tag/Tag'
 import List from '../../components/List/List'
 
 import axios from 'axios'
+import styled from 'styled-components';
 
 function ForumList({ history }){
   const [ lists, setList ] = useState([])
   const [ search, setSearch ] = useState("")
   const [ count, setCount ] = useState(1)
+  const [ currentPage, setCurrentPage ] = useState(1)
+  const [ postsPerPage, setPostsPerPage ] = useState(5)
   
   // 데이터 처리
   useEffect(() => {
-    axios.get(`http://localhost:5000/forum?_page=${count}&_limit=5`)
+    axios.get(`http://localhost:5000/forum`)
     //axios.get("http://localhost:5000/forum")
     .then(res => {
       setList(res.data)
@@ -59,6 +62,14 @@ function ForumList({ history }){
     history.push('/editforum')
   }
 
+  const indexOfLast = currentPage * postsPerPage;
+  const indexOfFirst = indexOfLast - postsPerPage;
+  function currentPosts(tmp) {
+    let currentPosts = 0;
+    currentPosts = tmp.slice(indexOfFirst, indexOfLast);
+    return currentPosts;
+  }
+
   return(
     <div>
       {/* 검색창 부분 */}
@@ -89,21 +100,67 @@ function ForumList({ history }){
         alignItems: 'center',
         marginTop: 50, 
       }}>
-        <List lists={lists} />
+        <List lists={currentPosts(lists)} />
       </div>
-      <Pagination page={onClickPage} />
+      <Pagination page={onClickPage} postPerPage={postsPerPage} totalPosts={lists.length} paginate={setCurrentPage}/>
     </div>
   )
 }
 
 export default ForumList
 
-function Pagination(props) {
+function Pagination({ page, postPerPage, totalPosts, paginate}) {
+  const PageUl = styled.ul`
+  float:left;
+  list-style: none;
+  text-align:center;
+  border-radius:3px;
+  color:white;
+  padding:1px;
+  border-top:3px solid #186EAD;
+  border-bottom:3px solid #186EAD;
+  background-color: rgba( 0, 0, 0, 0.4 );
+`;
+
+const PageLi = styled.li`
+  display:inline-block;
+  font-size:17px;
+  font-weight:600;
+  padding:5px;
+  border-radius:5px;
+  width:25px;
+  &:hover{
+    cursor:pointer;
+    color:white;
+    background-color:#263A6C;
+  }
+  &:focus::after{
+    color:white;
+    background-color:#263A6C;
+  }
+`;
+
+const PageSpan = styled.span`
+  &:hover::after,
+  &:focus::after{
+    border-radius:100%;
+    color:white;
+    background-color:#263A6C;
+  }
+`;
+  const pageNumbers = [];
+  for (let i = 1; i <= Math.ceil(totalPosts /postPerPage); i++){
+    pageNumbers.push(i);
+  }
   return(
     <div style={{ display: 'flex', justifyContent:'center', alignItems: 'center'}}>
-      <ui style={{ border: '1px solid black', padding: 5}} onClick={()=>props.page(1)}>1</ui>
-      <ui style={{ border: '1px solid black', padding: 5}} onClick={()=>props.page(2)}>2</ui>
-      <ui style={{ border: '1px solid black', padding: 5}} onClick={()=>props.page(3)}>3</ui>
+      {
+        pageNumbers.map(number => {
+          return(
+            <ui style={{ border: '1px solid black', padding: 5}} onClick={()=>paginate(number)}>{number}</ui>
+          )
+        })
+      }
     </div>
   )
 }
